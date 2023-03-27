@@ -33,3 +33,6 @@ npm run build
 ```sh
 npm run test:unit
 ```
+
+
+[![Coverage Status](https://coveralls.io/repos/github/madswandersen/unit-testing/badge.svg?branch=main)](https://coveralls.io/github/username/repo?branch=main)
