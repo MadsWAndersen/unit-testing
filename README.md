@@ -35,4 +35,4 @@ npm run test:unit
 ```
 
 
-[![Coverage Status](https://coveralls.io/repos/github/madswandersen/unit-testing/badge.svg?branch=main)](https://coveralls.io/github/madswandersen/unit-testing?branch=main)
+[![codecov](https://codecov.io/gh/MadsWAndersen/unit-testing/branch/main/graph/badge.svg?token=4GHTAPA2QP)](https://codecov.io/gh/MadsWAndersen/unit-testing)
