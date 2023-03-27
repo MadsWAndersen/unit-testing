@@ -7,7 +7,7 @@ jobs:
     steps:
     - name: 🚚 Get latest code
       uses: actions/checkout@v3
-    - name: 🔨 Build Project
+    - name: 🔨 Buisld Project
       run: |
         npm install
         npm run test
