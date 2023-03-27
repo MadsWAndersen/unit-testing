@@ -1,33 +1,36 @@
 <template>
-    <div>
-        <label for="inputVal">Input:</label>
-        <input type="number" v-model.number="inputVal" id="inputVal">
-        <select v-model="inputUnit">
-            <option value="mm">mm</option>
-            <option value="cm">cm</option>
-            <option value="m">m</option>
-            <option value="km">km</option>
-            <option value="C">C</option>
-            <option value="K">K</option>
-            <option value="F">F</option>
-            <option value="min">min</option>
-            <option value="sek">sek</option>
-            <option value="timer">timer</option>
-        </select>
-        <label for="outputVal">Output:</label>
-        <input type="number" v-model.number="outputVal" id="outputVal">
-        <select v-model="outputUnit">
-            <option value="mm">mm</option>
-            <option value="cm">cm</option>
-            <option value="m">m</option>
-            <option value="km">km</option>
-            <option value="C">C</option>
-            <option value="K">K</option>
-            <option value="F">F</option>
-            <option value="min">min</option>
-            <option value="sek">sek</option>
-            <option value="timer">timer</option>
-        </select>
+    <div class="converter-container">
+        <h1 class="title">Unit Converter</h1>
+        <div class="input-container">
+            <input class="input-field" type="number" v-model.number="inputVal" />
+            <select class="unit-dropdown" v-model="inputUnit">
+                <option value="mm">mm</option>
+                <option value="cm">cm</option>
+                <option value="m">m</option>
+                <option value="km">km</option>
+                <option value="C">C</option>
+                <option value="K">K</option>
+                <option value="F">F</option>
+                <option value="min">min</option>
+                <option value="sek">sek</option>
+                <option value="timer">timer</option>
+            </select>
+        </div>
+        <div class="output-container">
+            <input class="output-field" type="number" :value="outputVal" readonly />
+            <select class="unit-dropdown" v-model="outputUnit">
+                <option value="mm">mm</option>
+                <option value="cm">cm</option>
+                <option value="m">m</option>
+                <option value="km">km</option>
+                <option value="C">C</option>
+                <option value="K">K</option>
+                <option value="F">F</option>
+                <option value="min">min</option>
+                <option value="sek">sek</option>
+                <option value="timer">timer</option>
+            </select>
+        </div>
     </div>
 </template>
   
@@ -37,9 +40,9 @@ import { ref, watch } from 'vue';
 const inputVal = ref(0);
 const inputUnit = ref('mm');
 const outputVal = ref(0);
-const outputUnit = ref('cm');
+const outputUnit = ref('mm');
 
-const convert = () => {
+function convert() {
     switch (inputUnit.value) {
         case 'mm':
             switch (outputUnit.value) {
@@ -186,8 +189,95 @@ const convert = () => {
     }
 }
 
-watch([inputVal, inputUnit, outputUnit], () => {
-    convert();
-});
+watch(
+    [inputVal, inputUnit, outputUnit],
+    () => {
+        convert();
+    },
+    { deep: true }
+);
 </script>
-  
+
+<style scoped>
+.converter-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.title {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.input-field {
+    padding: 10px;
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.output-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.output-field {
+    padding: 10px;
+    font-size: 20px;
+    margin-right: 10px;
+    background-color: #f2f2f2;
+    border: none
+}
+
+.select-container {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+}
+
+.select-label {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.select-field {
+    padding: 10px;
+    font-size: 16px;
+}
+
+.button-container {
+    margin-top: 20px;
+}
+
+.convert-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.convert-button:hover {
+    background-color: #3e8e41;
+}
+
+@media screen and (max-width: 600px) {
+
+    .input-container,
+    .output-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+</style>
