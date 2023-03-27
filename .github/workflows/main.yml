@@ -10,4 +10,4 @@ jobs:
     - name: 🔨 Build Project
       run: |
         npm install
-        npm run test -- --coverage
+        npm run test -- --coverage && npx report-coverage
